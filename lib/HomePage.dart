@@ -13,7 +13,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(appBar: AppBar(
-      title: const Text("School Events"),
+      title: const Text("School Events Management"),
       backgroundColor: Color.fromARGB(255, 255, 255, 255),
       foregroundColor: Color.fromARGB(255, 255, 84, 84),
     ));
