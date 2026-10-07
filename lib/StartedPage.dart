@@ -60,8 +60,6 @@ class StartedPage extends StatelessWidget {
                       context,
                       PageRouteBuilder<void>(
                         pageBuilder: (_, _, _) => const LoginPage(),
-                        transitionDuration: Duration.zero,
-                        reverseTransitionDuration: Duration.zero,
                       ),
                     ),
                     style: ElevatedButton.styleFrom(
