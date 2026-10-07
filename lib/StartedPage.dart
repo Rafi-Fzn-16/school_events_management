@@ -59,7 +59,7 @@ class StartedPage extends StatelessWidget {
                     onPressed: () => Navigator.push<void>(
                       context,
                       PageRouteBuilder<void>(
-                        pageBuilder: (_, _, _) => const LoginPage(),
+                        pageBuilder: (_, __, ___) => const LoginPage(),
                       ),
                     ),
                     style: ElevatedButton.styleFrom(
