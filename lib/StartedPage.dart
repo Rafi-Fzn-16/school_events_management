@@ -56,20 +56,27 @@ class StartedPage extends StatelessWidget {
                   ),
                 ),
                 // Buka halaman login saat tombol ditekan.
-                ElevatedButton(
-                  onPressed: () => Navigator.push(
-                    context,
-                    MaterialPageRoute<void>(builder: (_) => const LoginPage()),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: _accent,
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.all(16),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
+                Align(
+                  child: ElevatedButton(
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute<void>(
+                        builder: (_) => const LoginPage(),
+                      ),
                     ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: _accent,
+                      foregroundColor: Colors.white,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 28,
+                        vertical: 16,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    child: const Text('Get Started'),
                   ),
-                  child: const Text('Get Started'),
                 ),
               ],
             ),
