@@ -12,6 +12,7 @@ class AdminDashboard extends StatelessWidget {
     appBar: AppBar(
       backgroundColor: Colors.white,
       elevation: 0,
+      automaticallyImplyLeading: false,
       titleSpacing: 16,
       // Logo dan nama aplikasi ditampilkan ringkas di kiri atas.
       title: Row(
