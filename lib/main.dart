@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:school_events_management/AdminDashboard.dart';
 import 'package:school_events_management/LoginPage.dart';
 import 'package:school_events_management/StartedPage.dart';
 
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const StartedPage(),
         '/login': (context) => const LoginPage(),
+        '/admin': (context) => const AdminDashboard(),
       },
     );
   }

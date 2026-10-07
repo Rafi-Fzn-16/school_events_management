@@ -36,10 +36,18 @@ class _LoginPageState extends State<LoginPage> {
     ),
   );
 
-  // Cetak nilai input untuk sementara, tanpa proses login.
-  void printLoginInput() {
+  // Periksa kredensial admin lalu buka dashboard jika cocok.
+  void login() {
     if (!formKey.currentState!.validate()) return;
-    debugPrint('Username: ${username.text}\nPassword: ${password.text}');
+
+    if (username.text.trim() == 'admin' && password.text == '12345') {
+      Navigator.pushReplacementNamed(context, '/admin');
+      return;
+    }
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Username atau password salah')),
+    );
   }
 
   @override
@@ -140,7 +148,7 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: printLoginInput,
+                      onPressed: login,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: red,
                         foregroundColor: Colors.white,
