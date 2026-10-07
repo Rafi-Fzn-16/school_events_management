@@ -16,8 +16,8 @@ class MyApp extends StatelessWidget {
       title: 'School Event Management System',
       // Terapkan warna utama aplikasi ke seluruh halaman.
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFFEF5757)),
-        scaffoldBackgroundColor: const Color(0xFFEEEAE9),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFFF45155)),
+        scaffoldBackgroundColor: Colors.white,
         useMaterial3: true,
       ),
       // Tampilkan halaman Get Started saat aplikasi dibuka.

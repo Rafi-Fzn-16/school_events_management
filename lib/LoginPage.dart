@@ -8,108 +8,153 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  // Warna halaman login.
-  static const _background = Color(0xFFEEEAE9);
-  static const _text = Color(0xFF303238);
-  static const _softText = Color(0xFF77777D);
-  static const _accent = Color(0xFFEF5757);
+  static const _red = Color(0xFFF45155);
+  static const _black = Color(0xFF111111);
 
-  // Controller menyimpan teks yang diketik pada masing-masing kolom.
   final _username = TextEditingController();
   final _password = TextEditingController();
 
   @override
   void dispose() {
-    // Lepaskan controller saat halaman ditutup.
     _username.dispose();
     _password.dispose();
     super.dispose();
   }
 
-  // Gaya kolom input supaya keduanya tampil konsisten.
-  InputDecoration _decoration(String hint) => InputDecoration(
+  // Match the calendar and school logo on the Get Started page.
+  Widget _logo() => Container(
+    width: 112,
+    height: 112,
+    decoration: BoxDecoration(
+      color: const Color(0xFFFFF8F7),
+      borderRadius: BorderRadius.circular(30),
+      boxShadow: const [
+        BoxShadow(color: Color(0x1F000000), offset: Offset(0, 8), blurRadius: 8),
+      ],
+    ),
+    child: Stack(
+      alignment: Alignment.center,
+      children: [
+        const Icon(Icons.calendar_month_rounded, size: 78, color: _red),
+        Positioned(
+          right: 14,
+          bottom: 18,
+          child: Icon(Icons.school_rounded, size: 38, color: Colors.indigo[900]),
+        ),
+        const Positioned(
+          top: 38,
+          left: 38,
+          child: Icon(Icons.star_rounded, size: 33, color: _red),
+        ),
+      ],
+    ),
+  );
+
+  InputDecoration _inputStyle(String hint) => InputDecoration(
     hintText: hint,
-    hintStyle: const TextStyle(color: Color(0xFF9A999E)),
     filled: true,
-    fillColor: Colors.white,
+    fillColor: const Color(0xFFFFF8F7),
     border: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(12),
+      borderRadius: BorderRadius.circular(14),
       borderSide: BorderSide.none,
     ),
     focusedBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(12),
-      borderSide: const BorderSide(color: _accent),
+      borderRadius: BorderRadius.circular(14),
+      borderSide: const BorderSide(color: _red),
     ),
   );
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: _background,
-      // AppBar menyediakan tombol kembali ke halaman sebelumnya.
-      appBar: AppBar(
-        backgroundColor: _background,
-        foregroundColor: _text,
-        elevation: 0,
-      ),
-      body: Center(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(24),
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 420),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                // Judul dan petunjuk login.
-                const Text(
-                  'Welcome Back',
-                  style: TextStyle(
-                    color: _text,
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: Stack(
+          children: [
+            Center(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.all(24),
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 420),
+                  child: Column(
+                    children: [
+                      _logo(),
+                      const SizedBox(height: 32),
+                      const Text.rich(
+                        TextSpan(
+                          style: TextStyle(
+                            color: _black,
+                            fontSize: 28,
+                            fontWeight: FontWeight.w900,
+                          ),
+                          children: [
+                            TextSpan(text: 'Log'),
+                            TextSpan(
+                              text: '-',
+                              style: TextStyle(color: _red),
+                            ),
+                            TextSpan(text: 'in'),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 42),
+                      TextField(
+                        controller: _username,
+                        decoration: _inputStyle('Enter username'),
+                      ),
+                      const SizedBox(height: 16),
+                      TextField(
+                        controller: _password,
+                        obscureText: true,
+                        decoration: _inputStyle('Enter password'),
+                      ),
+                      const SizedBox(height: 22),
+                      SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          onPressed: () => debugPrint(
+                            'Username: ${_username.text}\n'
+                            'Password: ${_password.text}',
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: _red,
+                            foregroundColor: Colors.white,
+                            padding: const EdgeInsets.all(16),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(14),
+                            ),
+                            elevation: 0,
+                          ),
+                          child: const Text('Login'),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                const SizedBox(height: 8),
-                const Text(
-                  'Login to continue to School Event.',
-                  style: TextStyle(color: _softText),
-                ),
-                const SizedBox(height: 28),
-                // Kolom untuk memasukkan username.
-                const Text('Username', style: TextStyle(color: _text)),
-                const SizedBox(height: 8),
-                TextField(
-                  controller: _username,
-                  decoration: _decoration('Enter username'),
-                ),
-                const SizedBox(height: 18),
-                // Kolom password disamarkan demi privasi.
-                const Text('Password', style: TextStyle(color: _text)),
-                const SizedBox(height: 8),
-                TextField(
-                  controller: _password,
-                  obscureText: true,
-                  decoration: _decoration('Enter password'),
-                ),
-                const SizedBox(height: 24),
-                // Tampilkan input ke terminal; belum melakukan autentikasi.
-                ElevatedButton(
-                  onPressed: () => debugPrint(
-                    'Username: ${_username.text}\nPassword: ${_password.text}',
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: _accent,
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.all(16),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                  child: const Text('Login'),
-                ),
-              ],
+              ),
             ),
-          ),
+            Positioned(
+              top: 16,
+              left: 24,
+              child: ElevatedButton.icon(
+                onPressed: () => Navigator.pop(context),
+                icon: const Icon(Icons.arrow_back, size: 16),
+                label: const Text('BACK'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: _red,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 12,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  elevation: 0,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

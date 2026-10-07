@@ -4,81 +4,127 @@ import 'package:flutter_application_2/LoginPage.dart';
 class StartedPage extends StatelessWidget {
   const StartedPage({super.key});
 
-  // Warna mengikuti palet halaman web.
-  static const _background = Color(0xFFEEEAE9);
-  static const _text = Color(0xFF303238);
-  static const _softText = Color(0xFF77777D);
-  static const _accent = Color(0xFFEF5757);
+  static const _red = Color(0xFFF45155);
+  static const _black = Color(0xFF111111);
+
+  // Calendar and school icons form a simple app logo.
+  Widget _logo() => Container(
+    width: 112,
+    height: 112,
+    decoration: BoxDecoration(
+      color: const Color(0xFFFFF8F7),
+      borderRadius: BorderRadius.circular(30),
+      boxShadow: const [
+        BoxShadow(color: Color(0x1F000000), offset: Offset(0, 8), blurRadius: 8),
+      ],
+    ),
+    child: Stack(
+      alignment: Alignment.center,
+      children: [
+        const Icon(Icons.calendar_month_rounded, size: 78, color: _red),
+        Positioned(
+          right: 14,
+          bottom: 18,
+          child: Icon(Icons.school_rounded, size: 38, color: Colors.indigo[900]),
+        ),
+        const Positioned(
+          top: 38,
+          left: 38,
+          child: Icon(Icons.star_rounded, size: 33, color: _red),
+        ),
+      ],
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: _background,
-      body: Center(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(24),
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 460),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                // Nama aplikasi dan ringkasan fitur.
-                const Text(
-                  'School Event',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: _text,
-                    fontSize: 38,
-                    fontWeight: FontWeight.w900,
-                  ),
-                ),
-                const Text(
-                  'Management System',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: _accent,
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 20),
-                  child: Text(
-                    'Manage school events, registrations, and participants '
-                    'in one simple application.',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: _softText,
-                      fontSize: 14,
-                      height: 1.6,
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: LayoutBuilder(
+          builder: (context, constraints) => SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: ConstrainedBox(
+              constraints: BoxConstraints(minHeight: constraints.maxHeight),
+              child: IntrinsicHeight(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    const SizedBox(height: 80),
+                    _logo(),
+                    Column(
+                      children: [
+                        const Text(
+                          'YOUR SCHOOL. YOUR MOMENTS.',
+                          style: TextStyle(color: _red, fontSize: 12),
+                        ),
+                        const SizedBox(height: 12),
+                        const Text(
+                          'School Event',
+                          style: TextStyle(
+                            color: _black,
+                            fontSize: 27,
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                        const Text(
+                          'Management',
+                          style: TextStyle(
+                            color: _red,
+                            fontSize: 27,
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        const Text(
+                          'Join an event or bring one to life.\n'
+                          'Choose your role to get started.\nStudent',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Color(0xFF555555),
+                            height: 1.2,
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                ),
-                // Buka halaman login saat tombol ditekan.
-                Align(
-                  child: ElevatedButton(
-                    onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute<void>(
-                        builder: (_) => const LoginPage(),
+                    SizedBox(
+                      width: 262,
+                      height: 66,
+                      child: ElevatedButton(
+                        onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute<void>(
+                            builder: (_) => const LoginPage(),
+                          ),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: _red,
+                          foregroundColor: Colors.white,
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(18),
+                          ),
+                          elevation: 0,
+                        ),
+                        child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Get Started',
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Icon(Icons.arrow_forward, size: 28),
+                          ],
+                        ),
                       ),
                     ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: _accent,
-                      foregroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 28,
-                        vertical: 16,
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                    child: const Text('Get Started'),
-                  ),
+                    const SizedBox(height: 20),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
         ),
