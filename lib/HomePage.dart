@@ -33,6 +33,7 @@ class _HomePageState extends State<HomePage> {
         ),
         backgroundColor: Color.fromARGB(255, 255, 255, 255),
       ),
+      backgroundColor: Color.fromARGB(255, 255, 255, 255),
       body: Column(
         children: [
           TextField(
