@@ -4,6 +4,7 @@ import 'package:flutter_application_2/LoginPage.dart';
 class StartedPage extends StatelessWidget {
   const StartedPage({super.key});
 
+  // Warna mengikuti palet halaman web.
   static const _background = Color(0xFFEEEAE9);
   static const _text = Color(0xFF303238);
   static const _softText = Color(0xFF77777D);
@@ -22,6 +23,7 @@ class StartedPage extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+                // Nama aplikasi dan ringkasan fitur.
                 const Text(
                   'School Event',
                   textAlign: TextAlign.center,
@@ -53,6 +55,7 @@ class StartedPage extends StatelessWidget {
                     ),
                   ),
                 ),
+                // Buka halaman login saat tombol ditekan.
                 ElevatedButton(
                   onPressed: () => Navigator.push(
                     context,

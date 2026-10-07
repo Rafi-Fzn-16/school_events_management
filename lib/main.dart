@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/StartedPage.dart';
 
+// Titik awal aplikasi Flutter.
 void main() {
   runApp(const MyApp());
 }
@@ -13,11 +14,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'School Event Management System',
+      // Terapkan warna utama aplikasi ke seluruh halaman.
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFFEF5757)),
         scaffoldBackgroundColor: const Color(0xFFEEEAE9),
         useMaterial3: true,
       ),
+      // Tampilkan halaman Get Started saat aplikasi dibuka.
       home: const StartedPage(),
     );
   }
