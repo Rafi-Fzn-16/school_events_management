@@ -57,12 +57,9 @@ class StartedPage extends StatelessWidget {
                   width: 262,
                   height: 66,
                   child: ElevatedButton(
-                    onPressed: () => Navigator.push<void>(
-                      context,
-                      PageRouteBuilder<void>(
-                        pageBuilder: (_, __, ___) => const LoginPage(),
-                      ),
-                    ),
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/login');
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: red,
                       foregroundColor: Colors.white,

@@ -55,7 +55,9 @@ class _LoginPageState extends State<LoginPage> {
           padding: const EdgeInsets.only(left: 16),
           child: Center(
             child: ElevatedButton.icon(
-              onPressed: () => Navigator.pop(context),
+              onPressed: () {
+                Navigator.pushReplacementNamed(context, '/');
+              },
               icon: const Icon(Icons.arrow_back, size: 16),
               label: const Text('BACK'),
               style: ElevatedButton.styleFrom(
