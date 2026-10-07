@@ -10,6 +10,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  TextEditingController inputNama = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,6 +32,22 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         backgroundColor: Color.fromARGB(255, 255, 255, 255),
+      ),
+      body: Column(
+        children: [
+          TextField(
+            controller: inputNama,
+            onSubmitted: (values) {
+              inputNama.text = values;
+            },
+          ),
+          ElevatedButton(
+            child: Text("Tampilkan Nama"),
+            onPressed: () {
+              print(inputNama.text);
+            },
+          ),
+        ],
       ),
     );
   }
