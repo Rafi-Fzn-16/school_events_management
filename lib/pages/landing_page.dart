@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'login_page.dart';
-import 'register_page.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({super.key});
@@ -66,17 +65,6 @@ class LandingPage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 14),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => const RegisterPage(),
-                        ),
-                      );
-                    },
-                    child: const Text('New here? Create an account'),
-                  ),
                 ],
               ),
             ),
