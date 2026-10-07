@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:school_events_management/LoginPage.dart';
 
 class StartedPage extends StatelessWidget {
   const StartedPage({super.key});
