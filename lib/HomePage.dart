@@ -36,6 +36,9 @@ class _HomePageState extends State<HomePage> {
       body: Column(
         children: [
           TextField(
+            decoration: InputDecoration(
+              hintText: "Masukkan Nama Anda",
+            ),
             controller: inputNama,
             onSubmitted: (values) {
               inputNama.text = values;
