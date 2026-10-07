@@ -19,11 +19,14 @@ class SchoolEventApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.dark,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF8B5CF6),
-          brightness: Brightness.dark,
+        colorScheme: const ColorScheme.dark(
+          primary: Color(0xFFFF5B32),
+          secondary: Color(0xFFFF5B32),
+          surface: Color(0xFF292D32),
+          onSurface: Color(0xFFF0F0F0),
+          onPrimary: Color(0xFFFFFFFF),
         ),
-        scaffoldBackgroundColor: const Color(0xFF0F0F14),
+        scaffoldBackgroundColor: const Color(0xFF292D32),
         useMaterial3: true,
       ),
       home: const StartRouter(),
