@@ -80,7 +80,7 @@ class _LoginPageState extends State<LoginPage> {
               key: formKey,
               child: Column(
                 children: [
-                  Image.asset('assets/Logo.png', width: 120, height: 120),
+                  Image.asset('assets/Logo.png', width: 140, height: 140),
                   const SizedBox(height: 28),
                   const Text(
                     'School Event',

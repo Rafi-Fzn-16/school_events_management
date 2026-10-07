@@ -20,7 +20,7 @@ class StartedPage extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Image.asset('assets/Logo.png', width: 120, height: 120),
+                Image.asset('assets/Logo.png', width: 140, height: 140),
                 const Text(
                   'YOUR SCHOOL. YOUR MOMENTS.',
                   textAlign: TextAlign.center,
