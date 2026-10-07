@@ -14,6 +14,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(appBar: AppBar(
       title: const Text("School Events Management"),
+      backgroundColor: Colors.deepPurple,
     ));
   }
 }
