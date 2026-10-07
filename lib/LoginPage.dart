@@ -11,6 +11,7 @@ class _LoginPageState extends State<LoginPage> {
   static const red = Color(0xFFF45155);
   static const black = Color(0xFF111111);
 
+  final formKey = GlobalKey<FormState>();
   final username = TextEditingController();
   final password = TextEditingController();
 
@@ -31,12 +32,13 @@ class _LoginPageState extends State<LoginPage> {
     ),
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(14),
-      borderSide: const BorderSide(color: red),
+      borderSide: BorderSide.none,
     ),
   );
 
   // Cetak nilai input untuk sementara, tanpa proses login.
   void printLoginInput() {
+    if (!formKey.currentState!.validate()) return;
     debugPrint('Username: ${username.text}\nPassword: ${password.text}');
   }
 
@@ -74,67 +76,77 @@ class _LoginPageState extends State<LoginPage> {
           padding: const EdgeInsets.all(24),
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 420),
-            child: Column(
-              children: [
-                const Text(
-                  'School Event',
-                  style: TextStyle(
-                    color: black,
-                    fontSize: 24,
-                    fontWeight: FontWeight.w900,
-                  ),
-                ),
-                const Text(
-                  'Management',
-                  style: TextStyle(
-                    color: red,
-                    fontSize: 24,
-                    fontWeight: FontWeight.w900,
-                  ),
-                ),
-                const SizedBox(height: 28),
-                const Text.rich(
-                  TextSpan(
+            child: Form(
+              key: formKey,
+              child: Column(
+                children: [
+                  const Text(
+                    'School Event',
                     style: TextStyle(
                       color: black,
-                      fontSize: 28,
+                      fontSize: 24,
                       fontWeight: FontWeight.w900,
                     ),
-                    children: [
-                      TextSpan(text: 'Log'),
-                      TextSpan(text: '-',
-                        style: TextStyle(color: red),
-                      ),
-                      TextSpan(text: 'in'),
-                    ],
                   ),
-                ),
-                const SizedBox(height: 36),
-                TextField(
-                  controller: username,
-                  decoration: fieldStyle('Enter username'),
-                ),
-                const SizedBox(height: 16),
-                TextField(
-                  controller: password,
-                  obscureText: true,
-                  decoration: fieldStyle('Enter password'),
-                ),
-                const SizedBox(height: 22),
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: printLoginInput,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: red,
-                      foregroundColor: Colors.white,
-                      padding: const EdgeInsets.all(16),
-                      elevation: 0,
+                  const Text(
+                    'Management',
+                    style: TextStyle(
+                      color: red,
+                      fontSize: 24,
+                      fontWeight: FontWeight.w900,
                     ),
-                    child: const Text('Login'),
                   ),
-                ),
-              ],
+                  const SizedBox(height: 28),
+                  const Text.rich(
+                    TextSpan(
+                      style: TextStyle(
+                        color: black,
+                        fontSize: 28,
+                        fontWeight: FontWeight.w900,
+                      ),
+                      children: [
+                        TextSpan(text: 'Log'),
+                        TextSpan(
+                          text: '-',
+                          style: TextStyle(color: red),
+                        ),
+                        TextSpan(text: 'in'),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 36),
+                  TextFormField(
+                    controller: username,
+                    decoration: fieldStyle('Enter username'),
+                    validator: (value) => value?.trim().isNotEmpty == true
+                        ? null
+                        : 'Username wajib diisi',
+                  ),
+                  const SizedBox(height: 16),
+                  TextFormField(
+                    controller: password,
+                    obscureText: true,
+                    decoration: fieldStyle('Enter password'),
+                    validator: (value) => value?.isNotEmpty == true
+                        ? null
+                        : 'Password wajib diisi',
+                  ),
+                  const SizedBox(height: 22),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: printLoginInput,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: red,
+                        foregroundColor: Colors.white,
+                        padding: const EdgeInsets.all(16),
+                        elevation: 0,
+                      ),
+                      child: const Text('Login'),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
