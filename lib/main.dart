@@ -1,63 +1,37 @@
 import 'package:flutter/material.dart';
-import 'pages/admin_dashboard.dart';
-import 'pages/landing_page.dart';
-import 'pages/student_page.dart';
-import 'services/auth_service.dart';
+import 'package:flutter_application_2/HomePage.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  runApp(const SchoolEventApp());
+void main() {
+  runApp(const MyApp());
 }
 
-class SchoolEventApp extends StatelessWidget {
-  const SchoolEventApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'School Event Management',
-      debugShowCheckedModeBanner: false,
+      title: 'School Events Management Demo',
       theme: ThemeData(
-        brightness: Brightness.dark,
-        colorScheme: const ColorScheme.dark(
-          primary: Color(0xFFFF5B32),
-          secondary: Color(0xFFFF5B32),
-          surface: Color(0xFF292D32),
-          onSurface: Color(0xFFF0F0F0),
-          onPrimary: Color(0xFFFFFFFF),
-        ),
-        scaffoldBackgroundColor: const Color(0xFF292D32),
-        useMaterial3: true,
+        // This is the theme of your application.
+        //
+        // TRY THIS: Try running your application with "flutter run". You'll see
+        // the application has a purple toolbar. Then, without quitting the app,
+        // try changing the seedColor in the colorScheme below to Colors.green
+        // and then invoke "hot reload" (save your changes or press the "hot
+        // reload" button in a Flutter-supported IDE, or press "r" if you used
+        // the command line to start the app).
+        //
+        // Notice that the counter didn't reset back to zero; the application
+        // state is not lost during the reload. To reset the state, use hot
+        // restart instead.
+        //
+        // This works for code too, not just values: Most code changes can be
+        // tested with just a hot reload.
+        colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const StartRouter(),
-    );
-  }
-}
-
-class StartRouter extends StatelessWidget {
-  const StartRouter({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder<String?>(
-      future: AuthService.getLoggedInRole(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState != ConnectionState.done) {
-          return const Scaffold(
-            body: Center(child: CircularProgressIndicator()),
-          );
-        }
-
-        if (snapshot.data == 'admin') {
-          return const AdminDashboard();
-        }
-
-        if (snapshot.data == 'student') {
-          return const StudentPage();
-        }
-
-        return const LandingPage();
-      },
+      home: const HomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
