@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:school_events_management/LoginPage.dart';
 import 'package:school_events_management/StartedPage.dart';
 
 // Titik awal aplikasi Flutter.
@@ -21,7 +22,11 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // Tampilkan halaman Get Started saat aplikasi dibuka.
-      home: const StartedPage(),
+      // home: const StartedPage(),
+      routes: {
+        '/': (context) => const StartedPage(),
+        '/login': (context) => const LoginPage(),
+      },
     );
   }
 }
